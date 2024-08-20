@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-
+@section('title', 'Check Booking')
 @section('content')
     <section id="CheckBook" class="w-full flex flex-col gap-10 px-5 items-center pt-20 max-w-[353px] m-auto">
         <div class="size-[100px] rounded-full overflow-hidden bg-[#FCCF2F] flex items-center justify-center">

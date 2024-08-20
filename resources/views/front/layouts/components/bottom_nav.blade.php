@@ -66,7 +66,7 @@
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="https://wa.me/+6287786068778">
                 <div class="group flex flex-col items-center text-center gap-2 transition-all duration-300 hover:text-black {{ $bottom_nav == 'contact' ? '' : 'text-[#9D9DAD]' }}">
                     <div class="w-6 h-6 flex shrink-0">
                         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

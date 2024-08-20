@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-
+@section('title', 'Details')
 @section('content')
     <div id="Top-navbar" class="flex items-center justify-between px-5 pt-5 absolute top-0 z-10 w-full">
         <a href="{{ route('front.index') }}">

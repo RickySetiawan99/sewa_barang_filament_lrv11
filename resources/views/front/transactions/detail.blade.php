@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-
+@section('title', 'Booking Details')
 @section('content')
     <div id="Top-navbar" class="flex items-center justify-between px-5 pt-5">
         <a href="{{ route('front.success.booking', $transaction) }}">
@@ -85,7 +85,7 @@
                         <img src="{{ asset('assets') }}/images/icons/user.svg" alt="icon">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <p class="font-semibold">{{ $details->product->name }}</p>
+                        <p class="font-semibold">{{ $details->name }}</p>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                         <img src="{{ asset('assets') }}/images/icons/calendar.svg" alt="icon">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <p class="font-semibold">{{ App\Helpers\Helper::formatDate($details->product->started_at) }}</p>
+                        <p class="font-semibold">{{ App\Helpers\Helper::formatDate($details->started_at) }}</p>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                         <img src="{{ asset('assets') }}/images/icons/calendar.svg" alt="icon">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <p class="font-semibold">{{ App\Helpers\Helper::formatDate($details->product->ended_at) }}</p>
+                        <p class="font-semibold">{{ App\Helpers\Helper::formatDate($details->ended_at) }}</p>
                     </div>
                 </div>
             </div>
@@ -175,7 +175,7 @@
     <div id="Bottom-nav" class="fixed bottom-0 max-w-[640px] w-full mx-auto border-t border-[#F1F1F1] overflow-hidden z-10">
         <div class="bg-white/50 backdrop-blur-sm absolute w-full h-full"></div>
         <div class="flex items-center justify-between p-5 relative z-10">
-            <a href="" class="rounded-full p-[12px_24px] bg-[#FCCF2F] font-bold w-full text-center">Contact Customer Service</a>
+            <a href="https://wa.me/+6287786068778" class="rounded-full p-[12px_24px] bg-[#FCCF2F] font-bold w-full text-center">Contact Customer Service</a>
         </div>
     </div>
 @endsection

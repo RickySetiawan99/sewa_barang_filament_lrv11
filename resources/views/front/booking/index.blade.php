@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-
+@section('title', 'Booking')
 @section('content')
     @if (session('error'))
         <div class="alert alert-danger">

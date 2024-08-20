@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-
+@section('title', 'Choose Product')
 @section('content')
     <div id="Top-navbar" class="flex items-center justify-between px-5 pt-5 w-full">
         <a href="{{ route('front.category', $category->slug) }}">

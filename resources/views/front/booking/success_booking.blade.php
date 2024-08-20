@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-
+@section('title', 'Finish Booking')
 @section('content')
     <section id="finishBook" class="flex flex-col gap-[30px] max-w-[353px] p-[30px_20px] items-center m-auto">
         <div class="flex flex-col gap-2 items-center">
