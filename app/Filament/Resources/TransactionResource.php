@@ -76,6 +76,7 @@ class TransactionResource extends Resource
                     ->required(),
 
                 Forms\Components\FileUpload::make('proof')
+                    ->required()
                     ->openable(),
 
                 Forms\Components\Select::make('is_paid')
@@ -99,8 +100,7 @@ class TransactionResource extends Resource
                     ->prefix('Rp'),
                 
                 Tables\Columns\TextColumn::make('trx_id')
-                    ->numeric()
-                    ->prefix('Rp'),
+                    ->numeric(),
 
                 Tables\Columns\IconColumn::make('is_paid')
                     ->boolean()
