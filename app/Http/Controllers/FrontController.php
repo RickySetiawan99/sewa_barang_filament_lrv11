@@ -22,6 +22,7 @@ class FrontController extends Controller
 {
     public function index()
     {
+        $data['bottom_nav']         = 'home';
         $data['categories']         = Category::all();
         $data['latest_products']    = Product::latest()->take(4)->get();
         $data['random_products']    = Product::inRandomOrder()->take(4)->get();
@@ -170,7 +171,9 @@ class FrontController extends Controller
 
     public function transactions()
     {
-        return view('front.transactions.index');
+        $data['bottom_nav'] = 'order';
+
+        return view('front.transactions.index', $data);
     }
 
     public function transactions_details(Request $request) {
