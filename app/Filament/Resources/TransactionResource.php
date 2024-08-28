@@ -19,6 +19,10 @@ class TransactionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
+    protected static ?string $navigationGroup = 'Transaction Management';
+
+    protected static ?int $navigationSort = 8;
+
     public static function form(Form $form): Form
     {
         return $form
