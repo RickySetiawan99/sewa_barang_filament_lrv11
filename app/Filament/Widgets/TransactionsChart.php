@@ -2,18 +2,18 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Transaction;
 use Carbon\Carbon;
-use App\Models\User;
 use Filament\Widgets\ChartWidget;
 use Filament\Widgets\Concerns\InteractsWithPageFilters;
 
-class UsersChart extends ChartWidget
+class TransactionsChart extends ChartWidget
 {
     use InteractsWithPageFilters;
+    
+    protected static ?string $heading = 'Transactions';
 
-    protected static ?string $heading = 'Users';
-
-    protected static ?int $sort = 1;
+    protected static ?int $sort = 2;
 
     protected function getType(): string
     {
@@ -21,24 +21,25 @@ class UsersChart extends ChartWidget
     }
 
     protected function getData(): array {
+        
         $startDate  = $this->filters['startDate'] ?? null;
         $endDate    = $this->filters['endDate'] ?? null;
-        
-        $users = User::select('created_at')
-            ->when($startDate, fn ($query) => $query->whereDate('created_at', '>=', $startDate))
-            ->when($endDate, fn ($query) => $query->whereDate('created_at', '<=', $endDate))
-            ->get()
-            ->groupBy(function($users) {
-                return Carbon::parse($users->created_at)->format('F');
-            });
+
+        $transactions = Transaction::select('started_at')
+                        ->when($startDate, fn ($query) => $query->whereDate('started_at', '>=', $startDate))
+                        ->when($endDate, fn ($query) => $query->whereDate('started_at', '<=', $endDate))
+                        ->get()
+                        ->groupBy(function($transactions) {
+                            return Carbon::parse($transactions->started_at)->format('d F y');
+                        });
         $quantities = [];
-        foreach ($users as $user => $value) {
+        foreach ($transactions as $transaction => $value) {
             array_push($quantities, $value->count());
         }
         return [
             'datasets' => [
                 [
-                    'label' => 'Users Joined',
+                    'label' => 'Transaction Created',
                     'data' => $quantities,
                     'backgroundColor' => [
                         'rgba(255, 99, 132, 0.2)',
@@ -61,7 +62,7 @@ class UsersChart extends ChartWidget
                     'borderWidth' => 1
                 ],
             ],
-            'labels' => $users->keys(),
+            'labels' => $transactions->keys(),
         ];
     }
 }
