@@ -64,6 +64,9 @@ class AdminPanelProvider extends PanelProvider
                 'Admin Management',
                 'Master Data',
                 'Transaction Management'
-            ]);
+            ])
+            ->brandLogo(fn () => view('filament.admin.logo'))
+            ->darkModeBrandLogo(fn () => view('filament.admin.logo_white'))
+            ->favicon(asset('assets/images/icons/Star.svg'));;
     }
 }
