@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\TransactionExporter;
 use App\Filament\Resources\TransactionResource\Pages;
 use App\Filament\Resources\TransactionResource\RelationManagers;
 use App\Models\Transaction;
@@ -9,6 +10,8 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ExportBulkAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -96,6 +99,8 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('index')->label('No.')->rowIndex(),
+
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
 
@@ -120,16 +125,30 @@ class TransactionResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\RestoreAction::make(),
+                Tables\Actions\ViewAction::make()->button(),
+                Tables\Actions\EditAction::make()->button(),
+                Tables\Actions\DeleteAction::make()->button(),
+                Tables\Actions\RestoreAction::make()->button(),
             ])
+            // ->headerActions([
+            //     ExportAction::make()
+            //         ->label('Export')
+            //         ->exporter(TransactionExporter::class)
+            //         ->columnMapping(false)
+            //         ->icon('heroicon-o-printer')
+            //         ->color('success')
+            // ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
+                    ->label('Export')
+                    ->exporter(TransactionExporter::class)
+                    ->columnMapping(false)
+                    ->icon('heroicon-o-printer')
+                    ->color('success')
             ]);
     }
 

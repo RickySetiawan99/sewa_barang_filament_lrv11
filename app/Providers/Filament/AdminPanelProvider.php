@@ -30,11 +30,13 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
-                'info' => Color::Blue,
+                'info' => Color::Cyan,
                 'primary' => Color::Indigo,
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             // ->pages([
@@ -67,6 +69,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->brandLogo(fn () => view('filament.admin.logo'))
             ->darkModeBrandLogo(fn () => view('filament.admin.logo_white'))
-            ->favicon(asset('assets/images/icons/Star.svg'));;
+            ->favicon(asset('assets/images/icons/Star.svg'));
     }
 }
