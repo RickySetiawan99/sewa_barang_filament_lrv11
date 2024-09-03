@@ -16,11 +16,7 @@ class EditTransaction extends EditRecord
             Actions\DeleteAction::make()
                 ->label('Delete')
                 ->icon('heroicon-o-trash')
-                ->color('danger'),
-            Actions\RestoreAction::make()
-                ->label('Restore')
-                ->icon('heroicon-o-arrow-path')
-                ->color('warning'),
+                ->color('danger')
         ];
     }
 }
