@@ -34,6 +34,10 @@ class FilamentServiceProvider extends ServiceProvider
                 if (Auth::user()->is_admin === 1 && Auth::user()->hasAnyRole(['super-admin', 'admin', 'moderator'])) {
                     Filament::registerUserMenuItems([
                         MenuItem::make()
+                            ->label('Home')
+                            ->url('/')
+                            ->icon('heroicon-o-home'),
+                        MenuItem::make()
                             ->label('Manage Permissions')
                             ->url(PermissionResource::getUrl())
                             ->icon('heroicon-o-key'),
