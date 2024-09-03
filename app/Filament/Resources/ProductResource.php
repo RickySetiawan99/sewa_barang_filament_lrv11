@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\ProductExporter;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Filament\Resources\ProductResource\RelationManagers\PhotosRelationManager;
@@ -11,6 +12,8 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ExportBulkAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -96,12 +99,27 @@ class ProductResource extends Resource
                     ->relationship('brand', 'name'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()->button(),
+                Tables\Actions\EditAction::make()->button(),
+            ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Export')
+                    ->exporter(ProductExporter::class)
+                    ->columnMapping(false)
+                    ->icon('heroicon-o-printer')
+                    ->color('success')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
+                    ->label('Export')
+                    ->exporter(ProductExporter::class)
+                    ->columnMapping(false)
+                    ->icon('heroicon-o-printer')
+                    ->color('success')
             ]);
     }
 

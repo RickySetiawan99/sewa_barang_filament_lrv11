@@ -130,14 +130,14 @@ class TransactionResource extends Resource
                 Tables\Actions\DeleteAction::make()->button(),
                 Tables\Actions\RestoreAction::make()->button(),
             ])
-            // ->headerActions([
-            //     ExportAction::make()
-            //         ->label('Export')
-            //         ->exporter(TransactionExporter::class)
-            //         ->columnMapping(false)
-            //         ->icon('heroicon-o-printer')
-            //         ->color('success')
-            // ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Export')
+                    ->exporter(TransactionExporter::class)
+                    ->columnMapping(false)
+                    ->icon('heroicon-o-printer')
+                    ->color('success')
+            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
