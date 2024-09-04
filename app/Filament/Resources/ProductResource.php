@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Exports\ProductExporter;
+use App\Filament\Imports\ProductImporter;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Filament\Resources\ProductResource\RelationManagers\PhotosRelationManager;
@@ -14,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ExportBulkAction;
+use Filament\Tables\Actions\ImportAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -80,6 +82,8 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id'),
+
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
 
@@ -103,6 +107,14 @@ class ProductResource extends Resource
                 Tables\Actions\EditAction::make()->button(),
             ])
             ->headerActions([
+                ImportAction::make()
+                    ->label('Import')
+                    ->importer(ProductImporter::class)
+                    ->icon('heroicon-o-inbox-arrow-down')
+                    ->color('warning')
+                    ->options([
+                        'updateExisting' => true,
+                    ]),
                 ExportAction::make()
                     ->label('Export')
                     ->exporter(ProductExporter::class)
