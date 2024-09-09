@@ -82,7 +82,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
+                Tables\Columns\TextColumn::make('index')->label('No.')->rowIndex(),
 
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
@@ -105,6 +105,7 @@ class ProductResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make()->button(),
                 Tables\Actions\EditAction::make()->button(),
+                Tables\Actions\DeleteAction::make()->button(),
             ])
             ->headerActions([
                 ImportAction::make()
@@ -125,13 +126,13 @@ class ProductResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Export Selected')
+                        ->exporter(ProductExporter::class)
+                        ->columnMapping(false)
+                        ->icon('heroicon-o-printer')
+                        ->color('success')
                 ]),
-                ExportBulkAction::make()
-                    ->label('Export')
-                    ->exporter(ProductExporter::class)
-                    ->columnMapping(false)
-                    ->icon('heroicon-o-printer')
-                    ->color('success')
             ]);
     }
 
