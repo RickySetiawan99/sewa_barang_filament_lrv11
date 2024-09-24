@@ -66,7 +66,7 @@ class TransactionResource extends Resource
     {
         return [
             Action::make('edit')
-                ->url(static::getUrl('edit', ['record' => $record]), shouldOpenInNewTab: true),
+                ->url(static::getUrl('edit', ['record' => $record]), shouldOpenInNewTab: false),
         ];
     }
 

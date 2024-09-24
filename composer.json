@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.2",
         "filament/filament": "^3.2.0",
+        "ladumor/laravel-pwa": "^0.0.4",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "spatie/laravel-permission": "^6.9"
