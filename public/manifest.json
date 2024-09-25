@@ -1,9 +1,9 @@
 {
-    "name": "Sewa App Desktop",
+    "name": "Admin Panel SewaApp",
     "short_name": "SewaApp",
     "start_url": "/admin/login",
-    "background_color": "#6777ef",
-    "description": "Sewa App Desktop",
+    "background_color": "#FFFFFF",
+    "description": "Admin Panel SewaApp",
     "display": "standalone",
     "theme_color": "#000000",
     "scope": "/",
@@ -13,6 +13,14 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any"
+        }
+    ],
+    "splash" : [
+        {
+            "src": "/assets/images/pwa/splash-1240x1240.png",
+            "sizes": "1240x1240",
+            "type": "image/png",
+            "purpose": "maskable"
         }
     ]
 }
